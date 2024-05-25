@@ -157,47 +157,45 @@ class _LoginScreenState extends State<LoginScreen> {
                     color: Color(0xffFF9900),
                     height: size.height * .07,
                     minWidth: 350,
-                    onPressed: (){Navigator.push(context, MaterialPageRoute(builder: (context) => EditProfile(fname: "fname"),));}
-                    // onPressed: () {
-                    //   if (_formKey.currentState!.validate()) {
-                    //     controller
-                    //         .onLogin(
-                    //             name: "jagriteesrivastava888@gmail.com",
-                    //             pass: passController.text)
-                    //         .then((response) {
-                    //       String? fname = controller.model.user?.fname;
-                    //       if (fname != null) {
-                    //         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                    //           content: Text("Login Successful"),
-                    //           backgroundColor: Colors.green,
-                    //         ));
-                    //         Navigator.pushReplacement(
-                    //           context,
-                    //           MaterialPageRoute(
-                    //             builder: (context) => EditProfile(
-                    //               address: controller.model.user?.address,
-                    //               fname: fname,
-                    //               lname: controller.model.user?.lname,
-                    //               mobile: controller.model.user?.mobile,
-                    //             ),
-                    //           ),
-                    //         );
-                    //       } else {
-                    //         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                    //           content: Text("Login Failed"),
-                    //           backgroundColor: Color(0xffFF0000),
-                    //         ));
-                    //       }
-                    //     }).catchError((error) {
-                    //       print("$error");
-                    //       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                    //         content: Text("Login Failed! Check Your Internet"),
-                    //         backgroundColor: Color(0xffFF0000),
-                    //       ));
-                    //     });
-                    //   }
-                    // }
-                    ,
+                    onPressed: () {
+                      if (_formKey.currentState!.validate()) {
+                        controller
+                            .onLogin(
+                                name: nameController.text,
+                                pass: passController.text)
+                            .then((response) {
+                          String? fname = controller.model.user?.fname;
+                          if (fname != null) {
+                            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                              content: Text("Login Successful"),
+                              backgroundColor: Colors.green,
+                            ));
+                            Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => EditProfile(
+                                  address: controller.model.user?.address,
+                                  fname: fname,
+                                  lname: controller.model.user?.lname,
+                                  mobile: controller.model.user?.mobile,
+                                ),
+                              ),
+                            );
+                          } else {
+                            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                              content: Text("Login Failed"),
+                              backgroundColor: Color(0xffFF0000),
+                            ));
+                          }
+                        }).catchError((error) {
+                          print("$error");
+                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                            content: Text("Login Failed! Check Your Internet"),
+                            backgroundColor: Color(0xffFF0000),
+                          ));
+                        });
+                      }
+                    },
                     child: Text(
                       "Sign In",
                       style: TextStyle(color: Colors.white, fontSize: 14),
