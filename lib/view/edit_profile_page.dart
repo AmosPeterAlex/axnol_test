@@ -70,10 +70,11 @@ class _EditProfileState extends State<EditProfile> {
           style: TextStyle(color: Colors.white),
         ),
         centerTitle: true,
+        leading: Icon(Icons.arrow_back_ios),
         iconTheme: IconThemeData(color: Colors.white),
         backgroundColor: Color(0xffFF9900),
         toolbarHeight: 40,
-        actions: [Icon(Icons.menu)],
+        actions: [Icon(Icons.more_vert)],
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
@@ -86,44 +87,52 @@ class _EditProfileState extends State<EditProfile> {
                     radius: 50,
                     backgroundImage: image != null ? FileImage(image!) : null,
                     child: image == null
-                        ? Container()
-                        // IconButton(
-                        // onPressed: () => _getImage(ImageSource.camera),
-                        // icon: Icon(Icons.camera_alt_outlined),
-                        // )
+                        ? Container(
+                            decoration: BoxDecoration(
+                              image: DecorationImage(
+                                image: AssetImage('assets/images/test dpp.jpg'),
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                          )
                         : null,
                   ),
                   Positioned(
                     bottom: 0,
                     right: 0,
-                    child: IconButton(
-                      onPressed: () => _getImage(ImageSource.camera),
-                      icon: Icon(
-                        Icons.camera_alt_outlined,
+                    child: CircleAvatar(
+                      backgroundColor: Color(0xffFF9900),
+                      child: IconButton(
+                        onPressed: () => _getImage(ImageSource.camera),
+                        icon: Icon(
+                          Icons.camera_alt_outlined,
+                          color: Colors.white,
+                        ),
                         color: Colors.black,
                       ),
-                      color: Colors.black,
                     ),
                   ),
                 ],
-              )
-              // CircleAvatar(
-              //   minRadius: 50,
-              //   backgroundImage: image != null ? FileImage(image!) : null,
-              //   child: image == null
-              //       ? IconButton(
-              //           onPressed: () => _getImage(ImageSource.camera),
-              //           icon: Icon(Icons.camera_alt_outlined),
-              //         )
-              //       : null,
-              // ),
-              ,
+              ),
               TextField(
                 controller: fnamec,
                 decoration: InputDecoration(
-                    hintText: "First Name *",
-                    border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(5))),
+                  label: RichText(
+                    text: TextSpan(
+                      text: 'First Name ',
+                      style: TextStyle(color: Colors.grey, fontSize: 16),
+                      children: <TextSpan>[
+                        TextSpan(
+                          text: '*',
+                          style: TextStyle(color: Color(0xffFF0000)),
+                        ),
+                      ],
+                    ),
+                  ),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(5),
+                  ),
+                ),
               ),
               SizedBox(
                 height: 20,
@@ -131,7 +140,19 @@ class _EditProfileState extends State<EditProfile> {
               TextField(
                 controller: lnamec,
                 decoration: InputDecoration(
-                    hintText: "Last Name *",
+                    label: RichText(
+                      text: TextSpan(
+                        text: 'Last Name ',
+                        style: TextStyle(color: Colors.grey, fontSize: 16),
+                        children: <TextSpan>[
+                          TextSpan(
+                            text: '*',
+                            style: TextStyle(color: Color(0xffFF0000)),
+                          ),
+                        ],
+                      ),
+                    ),
+                    // hintText: "Last Name *",
                     border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(5))),
               ),
@@ -141,7 +162,19 @@ class _EditProfileState extends State<EditProfile> {
               TextField(
                 controller: mobC,
                 decoration: InputDecoration(
-                    hintText: "Mobile Number *",
+                    label: RichText(
+                      text: TextSpan(
+                        text: 'Mobile Number',
+                        style: TextStyle(color: Colors.grey, fontSize: 16),
+                        children: <TextSpan>[
+                          TextSpan(
+                            text: '*',
+                            style: TextStyle(color: Color(0xffFF0000)),
+                          ),
+                        ],
+                      ),
+                    ),
+                    // hintText: "Mobile Number *",
                     border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(5))),
               ),
@@ -151,7 +184,19 @@ class _EditProfileState extends State<EditProfile> {
               TextField(
                 controller: addressC,
                 decoration: InputDecoration(
-                    hintText: "Address *",
+                    label: RichText(
+                      text: TextSpan(
+                        text: 'Address',
+                        style: TextStyle(color: Colors.grey, fontSize: 16),
+                        children: <TextSpan>[
+                          TextSpan(
+                            text: '*',
+                            style: TextStyle(color: Color(0xffFF0000)),
+                          ),
+                        ],
+                      ),
+                    ),
+                    // hintText: "Address *",
                     border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(5))),
               ),
@@ -162,8 +207,21 @@ class _EditProfileState extends State<EditProfile> {
                 maxLines: 5,
                 controller: detailsC,
                 decoration: InputDecoration(
-                    hintText: "Detail *",
+                    label: RichText(
+                      text: TextSpan(
+                        text: 'Details',
+                        style: TextStyle(color: Colors.grey, fontSize: 16),
+                        children: <TextSpan>[
+                          TextSpan(
+                            text: '*',
+                            style: TextStyle(color: Colors.red),
+                          ),
+                        ],
+                      ),
+                    ),
+                    // hintText: "Detail *",
                     border: OutlineInputBorder(
+                      borderSide:  BorderSide(color: Colors.red),
                         borderRadius: BorderRadius.circular(5))),
               ),
               SizedBox(
@@ -171,8 +229,12 @@ class _EditProfileState extends State<EditProfile> {
               ),
               MaterialButton(
                 onPressed: () {},
+                height: 70,
                 color: Color(0xffFF9900),
-                child: Text("Update"),
+                child: Text(
+                  "Update",
+                  style: TextStyle(color: Colors.white),
+                ),
               ),
             ],
           ),
