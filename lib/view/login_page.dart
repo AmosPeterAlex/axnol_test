@@ -34,7 +34,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   SizedBox(
-                    height: size.height * .3,
+                    height: size.height * .25,
                   ),
                   RichText(
                     textAlign: TextAlign.center,
@@ -67,18 +67,14 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
 
                   //#d1d3d3-< textfield fill color
-                  SizedBox(
-                    height: 40,
-                  ),
+                  SizedBox(height: size.height * .08),
                   TextFormField(
                     validator: (value) {
                       if (value == null || value.isEmpty) {
                         return "Email Required";
                       }
-
                       final emailRegex =
                           RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$');
-
                       if (!emailRegex.hasMatch(value)) {
                         return 'Type a valid email';
                       }
@@ -92,7 +88,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       label: RichText(
                         text: TextSpan(
                           text: 'Email address',
-                          style: TextStyle(color: Colors.grey, fontSize: 16),
+                          style: TextStyle(color: Colors.grey, fontSize: 14),
                           children: <TextSpan>[
                             TextSpan(
                               text: '*',
@@ -105,13 +101,9 @@ class _LoginScreenState extends State<LoginScreen> {
                       border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(5),
                           borderSide: BorderSide.none),
-                      // contentPadding:
-                      //     EdgeInsets.symmetric(horizontal: 8, vertical: 5),
                     ),
                   ),
-                  SizedBox(
-                    height: 30,
-                  ),
+                  SizedBox(height: size.height * .03),
                   TextFormField(
                     validator: (value) {
                       if (value == null || value.isEmpty) {
@@ -127,7 +119,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       label: RichText(
                         text: TextSpan(
                           text: 'Password',
-                          style: TextStyle(color: Colors.grey, fontSize: 16),
+                          style: TextStyle(color: Colors.grey, fontSize: 14),
                           children: <TextSpan>[
                             TextSpan(
                               text: '*',
@@ -141,12 +133,14 @@ class _LoginScreenState extends State<LoginScreen> {
                           // function cheyanm
                         },
                         child: Padding(
-                          padding: EdgeInsets.all(12.0),
+                          padding: EdgeInsets.symmetric(
+                              horizontal: 14, vertical: 14),
                           child: Text(
                             'Forgot?',
                             style: TextStyle(
                                 color: Color(0xffFF0000),
-                                fontWeight: FontWeight.bold),
+                                fontWeight: FontWeight.bold,
+                                fontSize: 14),
                           ),
                         ),
                       ),
@@ -154,80 +148,75 @@ class _LoginScreenState extends State<LoginScreen> {
                       border: OutlineInputBorder(
                           borderSide: BorderSide.none,
                           borderRadius: BorderRadius.circular(5)),
-                      // contentPadding:
-                      //     EdgeInsets.symmetric(horizontal: 8, vertical: 5),
                     ),
                   ),
                   SizedBox(
-                    height: 30,
+                    height: size.height * .03,
                   ),
                   MaterialButton(
                     color: Color(0xffFF9900),
-                    height: 70,
+                    height: size.height * .07,
                     minWidth: 350,
+                    onPressed: (){Navigator.push(context, MaterialPageRoute(builder: (context) => EditProfile(fname: "fname"),));}
                     // onPressed: () {
-                    //   Navigator.push(
-                    //       context,
-                    //       MaterialPageRoute(
-                    //           builder: (context) => EditProfile(fname: "amos")));
-                    // },
-                    onPressed: () {
-                      if (_formKey.currentState!.validate()) {
-                        controller
-                            .onLogin(
-                                name: "jagriteesrivastava888@gmail.com",
-                                pass: passController.text)
-                            .then((response) {
-                          String? fname = controller.model.user?.fname;
-                          if (fname != null) {
-                            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                              content: Text("Login Successful"),
-                              backgroundColor: Colors.green,
-                            ));
-                            Navigator.pushReplacement(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => EditProfile(
-                                  address: controller.model.user?.address,
-                                  fname: fname,
-                                  lname: controller.model.user?.lname,
-                                  mobile: controller.model.user?.mobile,
-                                ),
-                              ),
-                            );
-                          } else {
-                            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                              content: Text("Login Failed"),
-                              backgroundColor: Colors.red,
-                            ));
-                          }
-                        }).catchError((error) {
-                          print("$error");
-                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                            content: Text("Login Failed"),
-                            backgroundColor: Colors.red,
-                          ));
-                        });
-                      }
-                    },
+                    //   if (_formKey.currentState!.validate()) {
+                    //     controller
+                    //         .onLogin(
+                    //             name: "jagriteesrivastava888@gmail.com",
+                    //             pass: passController.text)
+                    //         .then((response) {
+                    //       String? fname = controller.model.user?.fname;
+                    //       if (fname != null) {
+                    //         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                    //           content: Text("Login Successful"),
+                    //           backgroundColor: Colors.green,
+                    //         ));
+                    //         Navigator.pushReplacement(
+                    //           context,
+                    //           MaterialPageRoute(
+                    //             builder: (context) => EditProfile(
+                    //               address: controller.model.user?.address,
+                    //               fname: fname,
+                    //               lname: controller.model.user?.lname,
+                    //               mobile: controller.model.user?.mobile,
+                    //             ),
+                    //           ),
+                    //         );
+                    //       } else {
+                    //         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                    //           content: Text("Login Failed"),
+                    //           backgroundColor: Color(0xffFF0000),
+                    //         ));
+                    //       }
+                    //     }).catchError((error) {
+                    //       print("$error");
+                    //       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                    //         content: Text("Login Failed! Check Your Internet"),
+                    //         backgroundColor: Color(0xffFF0000),
+                    //       ));
+                    //     });
+                    //   }
+                    // }
+                    ,
                     child: Text(
                       "Sign In",
-                      style: TextStyle(color: Colors.white),
+                      style: TextStyle(color: Colors.white, fontSize: 14),
                     ),
                   ),
                   SizedBox(
-                    height: size.height * .2,
+                    height: size.height * .25,
                   ),
                   RichText(
                     text: TextSpan(
                       children: [
                         TextSpan(
                           text: 'Not Registered yet? ',
-                          style: TextStyle(color: Colors.black),
+                          style: TextStyle(color: Colors.black, fontSize: 14),
                         ),
                         TextSpan(
                           text: 'Sign up now',
-                          style: TextStyle(color: Colors.red),
+                          style:
+                              TextStyle(color: Color(0xffFF0000), fontSize: 14),
                         ),
                       ],
                     ),

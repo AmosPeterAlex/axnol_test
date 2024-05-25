@@ -63,17 +63,18 @@ class _EditProfileState extends State<EditProfile> {
 
   @override
   Widget build(BuildContext context) {
+    var size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
         title: Text(
           "Edit Profile",
-          style: TextStyle(color: Colors.white),
+          style: TextStyle(color: Colors.white, fontSize: 16),
         ),
         centerTitle: true,
         leading: Icon(Icons.arrow_back_ios),
         iconTheme: IconThemeData(color: Colors.white),
         backgroundColor: Color(0xffFF9900),
-        toolbarHeight: 40,
+        toolbarHeight: 45,
         actions: [Icon(Icons.more_vert)],
       ),
       body: Padding(
@@ -84,7 +85,7 @@ class _EditProfileState extends State<EditProfile> {
               Stack(
                 children: [
                   CircleAvatar(
-                    radius: 50,
+                    radius: 60,
                     backgroundImage: image != null ? FileImage(image!) : null,
                     child: image == null
                         ? Container(
@@ -114,13 +115,14 @@ class _EditProfileState extends State<EditProfile> {
                   ),
                 ],
               ),
+              SizedBox(height: 12,),
               TextField(
                 controller: fnamec,
                 decoration: InputDecoration(
                   label: RichText(
                     text: TextSpan(
                       text: 'First Name ',
-                      style: TextStyle(color: Colors.grey, fontSize: 16),
+                      style: TextStyle(color: Colors.grey, fontSize: 14),
                       children: <TextSpan>[
                         TextSpan(
                           text: '*',
@@ -134,16 +136,14 @@ class _EditProfileState extends State<EditProfile> {
                   ),
                 ),
               ),
-              SizedBox(
-                height: 20,
-              ),
+              SizedBox(height: size.height * .02),
               TextField(
                 controller: lnamec,
                 decoration: InputDecoration(
                     label: RichText(
                       text: TextSpan(
                         text: 'Last Name ',
-                        style: TextStyle(color: Colors.grey, fontSize: 16),
+                        style: TextStyle(color: Colors.grey, fontSize: 14),
                         children: <TextSpan>[
                           TextSpan(
                             text: '*',
@@ -156,16 +156,14 @@ class _EditProfileState extends State<EditProfile> {
                     border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(5))),
               ),
-              SizedBox(
-                height: 20,
-              ),
+              SizedBox(height: size.height * .02),
               TextField(
                 controller: mobC,
                 decoration: InputDecoration(
                     label: RichText(
                       text: TextSpan(
                         text: 'Mobile Number',
-                        style: TextStyle(color: Colors.grey, fontSize: 16),
+                        style: TextStyle(color: Colors.grey, fontSize: 14),
                         children: <TextSpan>[
                           TextSpan(
                             text: '*',
@@ -178,16 +176,33 @@ class _EditProfileState extends State<EditProfile> {
                     border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(5))),
               ),
-              SizedBox(
-                height: 20,
-              ),
+              SizedBox(height: size.height * .02),
+              TextField(
+                // controller: addressC,
+                decoration: InputDecoration(
+                    label: RichText(
+                      text: TextSpan(
+                        text: 'Password',
+                        style: TextStyle(color: Colors.grey, fontSize: 14),
+                        children: <TextSpan>[
+                          TextSpan(
+                            text: '*',
+                            style: TextStyle(color: Color(0xffFF0000)),
+                          ),
+                        ],
+                      ),
+                    ),
+                    // hintText: "Address *",
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(5))),
+              ),SizedBox(height: size.height * .02),
               TextField(
                 controller: addressC,
                 decoration: InputDecoration(
                     label: RichText(
                       text: TextSpan(
                         text: 'Address',
-                        style: TextStyle(color: Colors.grey, fontSize: 16),
+                        style: TextStyle(color: Colors.grey, fontSize: 14),
                         children: <TextSpan>[
                           TextSpan(
                             text: '*',
@@ -201,16 +216,16 @@ class _EditProfileState extends State<EditProfile> {
                         borderRadius: BorderRadius.circular(5))),
               ),
               SizedBox(
-                height: 20,
+                height: size.height * .02,
               ),
               TextField(
-                maxLines: 5,
+                maxLines: 4,
                 controller: detailsC,
                 decoration: InputDecoration(
                     label: RichText(
                       text: TextSpan(
                         text: 'Details',
-                        style: TextStyle(color: Colors.grey, fontSize: 16),
+                        style: TextStyle(color: Colors.grey, fontSize: 14),
                         children: <TextSpan>[
                           TextSpan(
                             text: '*',
@@ -221,19 +236,20 @@ class _EditProfileState extends State<EditProfile> {
                     ),
                     // hintText: "Detail *",
                     border: OutlineInputBorder(
-                      borderSide:  BorderSide(color: Colors.red),
+                        borderSide: BorderSide(color: Colors.red),
                         borderRadius: BorderRadius.circular(5))),
               ),
               SizedBox(
-                height: 20,
+                height: size.height * .03,
               ),
               MaterialButton(
                 onPressed: () {},
-                height: 70,
+                height: size.height * .058,
+                minWidth: size.width * .44,
                 color: Color(0xffFF9900),
                 child: Text(
                   "Update",
-                  style: TextStyle(color: Colors.white),
+                  style: TextStyle(color: Colors.white, fontSize: 14),
                 ),
               ),
             ],
