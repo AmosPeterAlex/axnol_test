@@ -34,7 +34,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   SizedBox(
-                    height: size.height * .25,
+                    height: size.height * .22,
                   ),
                   RichText(
                     textAlign: TextAlign.center,
@@ -204,7 +204,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                   ),
                   SizedBox(
-                    height: size.height * .25,
+                    height: size.height * .26,
                   ),
                   RichText(
                     text: TextSpan(
