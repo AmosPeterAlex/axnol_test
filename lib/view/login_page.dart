@@ -1,5 +1,8 @@
 import 'package:axnol_machine_test/controller/login_controller.dart';
 import 'package:axnol_machine_test/view/edit_profile_page.dart';
+import 'package:axnol_machine_test/view/widgets/company_title.dart';
+import 'package:axnol_machine_test/view/widgets/material_button.dart';
+import 'package:axnol_machine_test/view/widgets/text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -16,6 +19,7 @@ class _LoginScreenState extends State<LoginScreen> {
   var nameController = TextEditingController();
   var passController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
+  bool isLoading = false;
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +40,116 @@ class _LoginScreenState extends State<LoginScreen> {
                   SizedBox(
                     height: size.height * .22,
                   ),
+                  CompanyTitle(),
+
+                  //#d1d3d3-< textfield fill color
+                  SizedBox(height: size.height * .08),
+                  TextFormFieldWidget(
+                      controller: nameController,
+                      hintText: "Email",
+                      labelText: "Email",
+                      suffixText: "",
+                      errorMessage: "Required"),
+
+                  SizedBox(height: size.height * .03),
+                  TextFormFieldWidget(
+                      controller: passController,
+                      hintText: "Password",
+                      labelText: "Password",
+                      suffixText: "Forgot",
+                      errorMessage: "Required"),
+
+                  SizedBox(
+                    height: size.height * .03,
+                  ),
+                  MaterialButtonWidget(
+                      color: Color(0xffFF9900),
+                      height: size.height * .07,
+                      minWidth: 350,
+                      isLoading: isLoading,
+                      buttonText: "Login",
+                      onPressed: () {
+                        if (_formKey.currentState!.validate()) {
+                          setState(() {
+                            isLoading = true;
+                          });
+                          controller
+                              .onLogin(
+                                  name: nameController.text,
+                                  pass: passController.text)
+                              .then((response) {
+                            String? fname = controller.model.user?.fname;
+                            if (fname != null) {
+                              ScaffoldMessenger.of(context)
+                                  .showSnackBar(SnackBar(
+                                content: Text("Login Successful"),
+                                duration: Duration(seconds: 2),
+                                backgroundColor: Colors.green,
+                              ));
+                              Navigator.pushReplacement(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => EditProfile(
+                                    address: controller.model.user?.address,
+                                    fname: fname,
+                                    lname: controller.model.user?.lname,
+                                    mobile: controller.model.user?.mobile,
+                                  ),
+                                ),
+                              );
+                            } else {
+                              ScaffoldMessenger.of(context)
+                                  .showSnackBar(SnackBar(
+                                content: Text("Login Failed"),
+                                backgroundColor: Color(0xffFF0000),
+                              ));
+                            }
+                            setState(() {
+                              isLoading = false;
+                            });
+                          }).catchError((error) {
+                            print("$error");
+                            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                              content:
+                                  Text("Login Failed! Check Your Internet"),
+                              backgroundColor: Color(0xffFF0000),
+                            ));
+                            setState(() {
+                              isLoading = false;
+                            });
+                          });
+                        }
+                      }),
+                  SizedBox(
+                    height: size.height * .26,
+                  ),
                   RichText(
+                    text: TextSpan(
+                      children: [
+                        TextSpan(
+                          text: 'Not Registered yet? ',
+                          style: TextStyle(color: Colors.black, fontSize: 14),
+                        ),
+                        TextSpan(
+                          text: 'Sign up now',
+                          style:
+                              TextStyle(color: Color(0xffFF0000), fontSize: 14),
+                        ),
+                      ],
+                    ),
+                  )
+                ],
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+/*
+RichText(
                     textAlign: TextAlign.center,
                     text: TextSpan(
                       children: [
@@ -66,9 +179,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                   ),
 
-                  //#d1d3d3-< textfield fill color
-                  SizedBox(height: size.height * .08),
-                  TextFormField(
+      TextFormField(
                     validator: (value) {
                       if (value == null || value.isEmpty) {
                         return "Email Required";
@@ -103,8 +214,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           borderSide: BorderSide.none),
                     ),
                   ),
-                  SizedBox(height: size.height * .03),
-                  TextFormField(
+                    TextFormField(
                     validator: (value) {
                       if (value == null || value.isEmpty) {
                         return 'Password Required';
@@ -150,15 +260,15 @@ class _LoginScreenState extends State<LoginScreen> {
                           borderRadius: BorderRadius.circular(5)),
                     ),
                   ),
-                  SizedBox(
-                    height: size.height * .03,
-                  ),
                   MaterialButton(
                     color: Color(0xffFF9900),
                     height: size.height * .07,
                     minWidth: 350,
                     onPressed: () {
                       if (_formKey.currentState!.validate()) {
+                        setState(() {
+                          isLoading = true;
+                        });
                         controller
                             .onLogin(
                                 name: nameController.text,
@@ -168,6 +278,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           if (fname != null) {
                             ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                               content: Text("Login Successful"),
+                              duration: Duration(seconds: 2),
                               backgroundColor: Colors.green,
                             ));
                             Navigator.pushReplacement(
@@ -187,44 +298,30 @@ class _LoginScreenState extends State<LoginScreen> {
                               backgroundColor: Color(0xffFF0000),
                             ));
                           }
+                          setState(() {
+                            isLoading = false;
+                          });
                         }).catchError((error) {
                           print("$error");
                           ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                             content: Text("Login Failed! Check Your Internet"),
                             backgroundColor: Color(0xffFF0000),
                           ));
+                          setState(() {
+                            isLoading = false;
+                          });
                         });
                       }
                     },
-                    child: Text(
-                      "Sign In",
-                      style: TextStyle(color: Colors.white, fontSize: 14),
-                    ),
+                    child: isLoading
+                        ? CircularProgressIndicator(
+                            valueColor: AlwaysStoppedAnimation<Color>(
+                                Color(0xffFF0000)),
+                          )
+                        : Text(
+                            "Sign In",
+                            style: TextStyle(color: Colors.white, fontSize: 14),
+                          ),
                   ),
-                  SizedBox(
-                    height: size.height * .26,
-                  ),
-                  RichText(
-                    text: TextSpan(
-                      children: [
-                        TextSpan(
-                          text: 'Not Registered yet? ',
-                          style: TextStyle(color: Colors.black, fontSize: 14),
-                        ),
-                        TextSpan(
-                          text: 'Sign up now',
-                          style:
-                              TextStyle(color: Color(0xffFF0000), fontSize: 14),
-                        ),
-                      ],
-                    ),
-                  )
-                ],
-              ),
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-}
+
+ */

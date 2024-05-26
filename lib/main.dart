@@ -1,3 +1,4 @@
+import 'package:axnol_machine_test/view/edit_profile_page.dart';
 import 'package:axnol_machine_test/view/login_page.dart';
 import 'package:flutter/material.dart';
 
@@ -17,7 +18,7 @@ class MyApp extends StatelessWidget {
       //   colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       //   useMaterial3: true,
       // ),
-      home: LoginScreen(), debugShowCheckedModeBanner: false,
+      home:LoginScreen(), debugShowCheckedModeBanner: false,
     );
   }
 }

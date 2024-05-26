@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:axnol_machine_test/view/widgets/text_field_.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -122,134 +123,54 @@ class _EditProfileState extends State<EditProfile> {
               SizedBox(
                 height: 12,
               ),
-              TextField(
+              TextfieldWidget(
                 controller: fnamec,
-                decoration: InputDecoration(
-                  label: RichText(
-                    text: TextSpan(
-                      text: 'First Name ',
-                      style: TextStyle(color: Colors.grey, fontSize: 14),
-                      children: <TextSpan>[
-                        TextSpan(
-                          text: '*',
-                          style: TextStyle(color: Color(0xffFF0000)),
-                        ),
-                      ],
-                    ),
-                  ),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(5),
-                  ),
-                ),
+                hintText: 'First Name',
+                labelText: 'First Name',
+                isMandatory: true,
               ),
               SizedBox(height: size.height * .02),
-              TextField(
+              TextfieldWidget(
                 controller: lnamec,
-                decoration: InputDecoration(
-                    label: RichText(
-                      text: TextSpan(
-                        text: 'Last Name ',
-                        style: TextStyle(color: Colors.grey, fontSize: 14),
-                        children: <TextSpan>[
-                          TextSpan(
-                            text: '*',
-                            style: TextStyle(color: Color(0xffFF0000)),
-                          ),
-                        ],
-                      ),
-                    ),
-                    // hintText: "Last Name *",
-                    border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(5))),
+                hintText: 'Last Name',
+                labelText: 'Last Name',
+                isMandatory: true,
               ),
               SizedBox(height: size.height * .02),
-              TextField(
+              TextfieldWidget(
                 controller: mobC,
-                decoration: InputDecoration(
-                    label: RichText(
-                      text: TextSpan(
-                        text: 'Mobile Number',
-                        style: TextStyle(color: Colors.grey, fontSize: 14),
-                        children: <TextSpan>[
-                          TextSpan(
-                            text: '*',
-                            style: TextStyle(color: Color(0xffFF0000)),
-                          ),
-                        ],
-                      ),
-                    ),
-                    // hintText: "Mobile Number *",
-                    border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(5))),
+                hintText: 'Mobile Number',
+                labelText: 'Mobile Number',
+                isMandatory: true,
               ),
               SizedBox(height: size.height * .02),
-              TextField(
-                // controller: addressC,
-                decoration: InputDecoration(
-                    label: RichText(
-                      text: TextSpan(
-                        text: 'Password',
-                        style: TextStyle(color: Colors.grey, fontSize: 14),
-                        children: <TextSpan>[
-                          TextSpan(
-                            text: '*',
-                            style: TextStyle(color: Color(0xffFF0000)),
-                          ),
-                        ],
-                      ),
-                    ),
-                    // hintText: "Address *",
-                    border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(5))),
+              TextfieldWidget(
+                controller: TextEditingController(),
+                hintText: 'Password',
+                labelText: 'Password',
+                isMandatory: true,
+                obscureText: true,
               ),
               SizedBox(height: size.height * .02),
-              TextField(
+              TextfieldWidget(
                 controller: addressC,
-                decoration: InputDecoration(
-                    label: RichText(
-                      text: TextSpan(
-                        text: 'Address',
-                        style: TextStyle(color: Colors.grey, fontSize: 14),
-                        children: <TextSpan>[
-                          TextSpan(
-                            text: '*',
-                            style: TextStyle(color: Color(0xffFF0000)),
-                          ),
-                        ],
-                      ),
-                    ),
-                    // hintText: "Address *",
-                    border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(5))),
+                hintText: 'Address',
+                labelText: 'Address',
+                isMandatory: true,
               ),
-              SizedBox(
-                height: size.height * .02,
-              ),
+              SizedBox(height: size.height * .02),
               SizedBox(
                 height: size.height * .12,
                 width: size.width * .99,
-                child: TextField(
-                  maxLines: 4,
+                child: TextfieldWidget(
                   controller: detailsC,
-                  decoration: InputDecoration(
-                      label: RichText(
-                        text: TextSpan(
-                          text: 'Details',
-                          style: TextStyle(color: Colors.grey, fontSize: 14),
-                          children: <TextSpan>[
-                            TextSpan(
-                              text: '*',
-                              style: TextStyle(color: Colors.red),
-                            ),
-                          ],
-                        ),
-                      ),
-                      // hintText: "Detail *",
-                      border: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.red),
-                          borderRadius: BorderRadius.circular(5))),
+                  hintText: 'Details',
+                  labelText: 'Details',
+                  isMandatory: true,
+                  maxLines: 4,
                 ),
               ),
+
               SizedBox(
                 height: size.height * .03,
               ),
@@ -270,3 +191,135 @@ class _EditProfileState extends State<EditProfile> {
     );
   }
 }
+
+/*
+no need as refactored
+        // TextField(
+              //   controller: fnamec,
+              //   decoration: InputDecoration(
+              //     label: RichText(
+              //       text: TextSpan(
+              //         text: 'First Name ',
+              //         style: TextStyle(color: Colors.grey, fontSize: 14),
+              //         children: <TextSpan>[
+              //           TextSpan(
+              //             text: '*',
+              //             style: TextStyle(color: Color(0xffFF0000)),
+              //           ),
+              //         ],
+              //       ),
+              //     ),
+              //     border: OutlineInputBorder(
+              //       borderRadius: BorderRadius.circular(5),
+              //     ),
+              //   ),
+              // ),
+              // SizedBox(height: size.height * .02),
+              // TextField(
+              //   controller: lnamec,
+              //   decoration: InputDecoration(
+              //       label: RichText(
+              //         text: TextSpan(
+              //           text: 'Last Name ',
+              //           style: TextStyle(color: Colors.grey, fontSize: 14),
+              //           children: <TextSpan>[
+              //             TextSpan(
+              //               text: '*',
+              //               style: TextStyle(color: Color(0xffFF0000)),
+              //             ),
+              //           ],
+              //         ),
+              //       ),
+              //       // hintText: "Last Name *",
+              //       border: OutlineInputBorder(
+              //           borderRadius: BorderRadius.circular(5))),
+              // ),
+              // SizedBox(height: size.height * .02),
+              // TextField(
+              //   controller: mobC,
+              //   decoration: InputDecoration(
+              //       label: RichText(
+              //         text: TextSpan(
+              //           text: 'Mobile Number',
+              //           style: TextStyle(color: Colors.grey, fontSize: 14),
+              //           children: <TextSpan>[
+              //             TextSpan(
+              //               text: '*',
+              //               style: TextStyle(color: Color(0xffFF0000)),
+              //             ),
+              //           ],
+              //         ),
+              //       ),
+              //       // hintText: "Mobile Number *",
+              //       border: OutlineInputBorder(
+              //           borderRadius: BorderRadius.circular(5))),
+              // ),
+              // SizedBox(height: size.height * .02),
+              // TextField(
+              //   // controller: addressC,
+              //   decoration: InputDecoration(
+              //       label: RichText(
+              //         text: TextSpan(
+              //           text: 'Password',
+              //           style: TextStyle(color: Colors.grey, fontSize: 14),
+              //           children: <TextSpan>[
+              //             TextSpan(
+              //               text: '*',
+              //               style: TextStyle(color: Color(0xffFF0000)),
+              //             ),
+              //           ],
+              //         ),
+              //       ),
+              //       // hintText: "Address *",
+              //       border: OutlineInputBorder(
+              //           borderRadius: BorderRadius.circular(5))),
+              // ),
+              // SizedBox(height: size.height * .02),
+              // TextField(
+              //   controller: addressC,
+              //   decoration: InputDecoration(
+              //       label: RichText(
+              //         text: TextSpan(
+              //           text: 'Address',
+              //           style: TextStyle(color: Colors.grey, fontSize: 14),
+              //           children: <TextSpan>[
+              //             TextSpan(
+              //               text: '*',
+              //               style: TextStyle(color: Color(0xffFF0000)),
+              //             ),
+              //           ],
+              //         ),
+              //       ),
+              //       // hintText: "Address *",
+              //       border: OutlineInputBorder(
+              //           borderRadius: BorderRadius.circular(5))),
+              // ),
+              // SizedBox(
+              //   height: size.height * .02,
+              // ),
+              // SizedBox(
+              //   height: size.height * .12,
+              //   width: size.width * .99,
+              //   child: TextField(
+              //     maxLines: 4,
+              //     controller: detailsC,
+              //     decoration: InputDecoration(
+              //         label: RichText(
+              //           text: TextSpan(
+              //             text: 'Details',
+              //             style: TextStyle(color: Colors.grey, fontSize: 14),
+              //             children: <TextSpan>[
+              //               TextSpan(
+              //                 text: '*',
+              //                 style: TextStyle(color: Colors.red),
+              //               ),
+              //             ],
+              //           ),
+              //         ),
+              //         // hintText: "Detail *",
+              //         border: OutlineInputBorder(
+              //             borderSide: BorderSide(color: Colors.red),
+              //             borderRadius: BorderRadius.circular(5))),
+              //   ),
+              // ),
+ */

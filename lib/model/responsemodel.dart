@@ -1,129 +1,119 @@
-// To parse this JSON data, do
-//
-//     final model = modelFromJson(jsonString);
-
-import 'dart:convert';
-
-Model modelFromJson(String str) => Model.fromJson(json.decode(str));
-
-String modelToJson(Model data) => json.encode(data.toJson());
-
 class Model {
-    String? message;
-    String? accessToken;
-    User? user;
+  String? message;
+  String? accessToken;
+  User? user;
 
-    Model({
-        this.message,
-        this.accessToken,
-        this.user,
-    });
+  Model({
+    this.message,
+    this.accessToken,
+    this.user,
+  });
 
-    factory Model.fromJson(Map<String, dynamic> json) => Model(
+  factory Model.fromJson(Map<String, dynamic> json) => Model(
         message: json["message"],
         accessToken: json["access_token"],
         user: json["user"] == null ? null : User.fromJson(json["user"]),
-    );
+      );
 
-    Map<String, dynamic> toJson() => {
+  Map<String, dynamic> toJson() => {
         "message": message,
         "access_token": accessToken,
         "user": user?.toJson(),
-    };
+      };
 }
 
 class User {
-    int? id;
-    String? fname;
-    String? lname;
-    dynamic dob;
-    dynamic doa;
-    String? mobile;
-    String? email;
-    String? address;
-    dynamic marriedStatus;
-    dynamic cityId;
-    dynamic stateId;
-    dynamic countryId;
-    dynamic gender;
-    dynamic pinCode;
-    String? status;
-    String? verified;
-    dynamic userImg;
-    String? role;
-    dynamic emailVerifiedAt;
-    String? detail;
-    String? braintreeId;
-    dynamic fbUrl;
-    dynamic twitterUrl;
-    dynamic youtubeUrl;
-    dynamic linkedinUrl;
-    dynamic preferPayMethod;
-    dynamic paypalEmail;
-    dynamic paytmMobile;
-    dynamic bankAccName;
-    dynamic bankAccNo;
-    dynamic ifscCode;
-    dynamic bankName;
-    dynamic facebookId;
-    dynamic googleId;
-    dynamic amazonId;
-    DateTime? createdAt;
-    DateTime? updatedAt;
-    dynamic zoomEmail;
-    dynamic jwtToken;
-    dynamic gitlabId;
-    dynamic linkedinId;
-    dynamic twitterId;
-    dynamic code;
+  int? id;
+  String? fname;
+  String? lname;
+  dynamic dob;
+  dynamic doa;
+  String? mobile;
+  String? email;
+  String? address;
+  dynamic marriedStatus;
+  dynamic cityId;
+  dynamic stateId;
+  dynamic countryId;
+  dynamic gender;
+  dynamic pinCode;
+  String? status;
+  String? verified;
+  dynamic userImg;
+  String? role;
+  dynamic emailVerifiedAt;
+  String? detail;
+  String? braintreeId;
+  dynamic fbUrl;
+  dynamic twitterUrl;
+  dynamic youtubeUrl;
+  dynamic linkedinUrl;
+  dynamic preferPayMethod;
+  dynamic paypalEmail;
+  dynamic paytmMobile;
+  dynamic bankAccName;
+  dynamic bankAccNo;
+  dynamic ifscCode;
+  dynamic bankName;
+  dynamic facebookId;
+  dynamic googleId;
+  dynamic amazonId;
+  DateTime? createdAt;
+  DateTime? updatedAt;
+  dynamic zoomEmail;
+  dynamic jwtToken;
+  dynamic gitlabId;
+  dynamic linkedinId;
+  dynamic twitterId;
+  dynamic code;
 
-    User({
-        this.id,
-        this.fname,
-        this.lname,
-        this.dob,
-        this.doa,
-        this.mobile,
-        this.email,
-        this.address,
-        this.marriedStatus,
-        this.cityId,
-        this.stateId,
-        this.countryId,
-        this.gender,
-        this.pinCode,
-        this.status,
-        this.verified,
-        this.userImg,
-        this.role,
-        this.emailVerifiedAt,
-        this.detail,
-        this.braintreeId,
-        this.fbUrl,
-        this.twitterUrl,
-        this.youtubeUrl,
-        this.linkedinUrl,
-        this.preferPayMethod,
-        this.paypalEmail,
-        this.paytmMobile,
-        this.bankAccName,
-        this.bankAccNo,
-        this.ifscCode,
-        this.bankName,
-        this.facebookId,
-        this.googleId,
-        this.amazonId,
-        this.createdAt,
-        this.updatedAt,
-        this.zoomEmail,
-        this.jwtToken,
-        this.gitlabId,
-        this.linkedinId,
-        this.twitterId,
-        this.code,
-    });
+  User({
+    this.id,
+    this.fname,
+    this.lname,
+    this.dob,
+    this.doa,
+    this.mobile,
+    this.email,
+    this.address,
+    this.marriedStatus,
+    this.cityId,
+    this.stateId,
+    this.countryId,
+    this.gender,
+    this.pinCode,
+    this.status,
+    this.verified,
+    this.userImg,
+    this.role,
+    this.emailVerifiedAt,
+    this.detail,
+    this.braintreeId,
+    this.fbUrl,
+    this.twitterUrl,
+    this.youtubeUrl,
+    this.linkedinUrl,
+    this.preferPayMethod,
+    this.paypalEmail,
+    this.paytmMobile,
+    this.bankAccName,
+    this.bankAccNo,
+    this.ifscCode,
+    this.bankName,
+    this.facebookId,
+    this.googleId,
+    this.amazonId,
+    this.createdAt,
+    this.updatedAt,
+    this.zoomEmail,
+    this.jwtToken,
+    this.gitlabId,
+    this.linkedinId,
+    this.twitterId,
+    this.code,
+  });
 
-    factory User.fromJson(Map<String, dynamic> json) => User(
+  factory User.fromJson(Map<String, dynamic> json) => User(
         id: json["id"],
         fname: json["fname"],
         lname: json["lname"],
@@ -159,17 +149,21 @@ class User {
         facebookId: json["facebook_id"],
         googleId: json["google_id"],
         amazonId: json["amazon_id"],
-        createdAt: json["created_at"] == null ? null : DateTime.parse(json["created_at"]),
-        updatedAt: json["updated_at"] == null ? null : DateTime.parse(json["updated_at"]),
+        createdAt: json["created_at"] == null
+            ? null
+            : DateTime.parse(json["created_at"]),
+        updatedAt: json["updated_at"] == null
+            ? null
+            : DateTime.parse(json["updated_at"]),
         zoomEmail: json["zoom_email"],
         jwtToken: json["jwt_token"],
         gitlabId: json["gitlab_id"],
         linkedinId: json["linkedin_id"],
         twitterId: json["twitter_id"],
         code: json["code"],
-    );
+      );
 
-    Map<String, dynamic> toJson() => {
+  Map<String, dynamic> toJson() => {
         "id": id,
         "fname": fname,
         "lname": lname,
@@ -213,5 +207,5 @@ class User {
         "linkedin_id": linkedinId,
         "twitter_id": twitterId,
         "code": code,
-    };
+      };
 }
